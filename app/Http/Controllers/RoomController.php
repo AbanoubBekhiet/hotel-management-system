@@ -12,7 +12,9 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $data['title'] = "Rooms";
+        $data['rooms'] = Room::getRooms();
+        return view('front_desk.room.list', $data);
     }
 
     /**
