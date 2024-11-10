@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->enum('room_type', ['single', 'double', 'triple', 'queen', 'king']);
-            $table->float('price_per_neight');
-            $table->boolean('is_VIB')->comment("0: is not VIB\n1: is VIB")->default(0);
+            $table->float('price_per_night');
+            $table->boolean('is_VIP')->comment("0: is not VIP\n1: is VIP")->default(0);
             $table->text('description')->nullable();
             $table->boolean('status')->comment("0: is available\n1: is not available")->default(0);
             $table->timestamps();

@@ -14,7 +14,18 @@ Route::post('forgot-password', [AuthController::class,'postForgotPassword']);
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard']);
-});
+
+    // rooms
+    Route::prefix('room')->controller(RoomController::class)->group(function () {
+        Route::get('/list','index');
+        Route::get('/add', 'create');
+        Route::post('/add', 'store');
+        Route::get('/edit/{id}', 'edit');
+        Route::post('/edit/{id}', 'update');
+        Route::get('/delete/{id}', 'destroy');
+    });
+
+}); 
 
 Route::prefix('front_desk')->middleware('front_desk')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard']);

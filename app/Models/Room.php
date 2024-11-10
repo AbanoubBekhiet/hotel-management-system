@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Request;
 
 class Room extends Model
 {
+
+    protected $fillable = [
+        'room_type',
+        'price_per_night',
+        'is_VIP',
+        'description',
+        'status',
+    ];
+
     public function housekeeping() {
         return $this->hasMany(Housekeeping::class);
     }
@@ -21,7 +30,7 @@ class Room extends Model
 
     static function getRooms () {
         $query = self::select('rooms.*');
-        // $status = !empty(Request::get('vib'));
+
         if (!empty(Request::get('room_type'))) {
             $query->where('rooms.room_type',  Request::get('room_type'));
         }
@@ -37,5 +46,10 @@ class Room extends Model
 
         return $query->paginate(5);
     }
+
+    public static function getRoomById($id) {
+        return self::where('id', $id)->first();
+    }
+
 
 }
